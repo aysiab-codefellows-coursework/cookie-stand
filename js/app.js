@@ -5,6 +5,9 @@ var storeSeattle = {
     minCust: 23,
     maxCust: 65, 
     avgSale: 6.3,
+    getCustomers: function() {
+        return Math.random * (this.maxCust - this.minCust) + this.minCust;
+    }
 }
 
 var storeTokyo = {
@@ -12,6 +15,9 @@ var storeTokyo = {
     minCust: 3,
     maxCust: 24,
     avgSale: 1.2,
+    getCustomers: function() {
+        return Math.random * (this.maxCust - this.minCust) + this.minCust;
+    }
 }
 
 var storeDubai = {
@@ -19,6 +25,9 @@ var storeDubai = {
     minCust: 11,
     maxCust: 38,
     avgSale: 3.7,
+    getCustomers: function() {
+        return Math.random * (this.maxCust - this.minCust) + this.minCust;
+    }
 }
 
 var storeParis = {
@@ -26,6 +35,9 @@ var storeParis = {
     minCust: 20,
     maxCust: 38,
     avgSale: 2.3,
+    getCustomers: function() {
+        return Math.random * (this.maxCust - this.minCust) + this.minCust;
+    }
 }
 
 var storeLima = {
@@ -33,4 +45,7 @@ var storeLima = {
     minCust: 2,
     maxCust: 16,
     avgSale: 4.6,
+    getCustomers: function() {
+        return Math.random * (this.maxCust - this.minCust) + this.minCust;
+    }
 }
