@@ -5,6 +5,7 @@ var storeSeattle = {
     minCust: 23,
     maxCust: 65, 
     avgSale: 6.3,
+    allCookies: [],
     getCustomers: function() {
         return computeCustomers(this.maxCust,this.minCust);
     },
@@ -17,7 +18,7 @@ var storeSeattle = {
             cookies[i] = sold;
         }
         cookies[cookies.length] = total;
-        return cookies;
+        this.allCookies = cookies;
     },
 }
 
@@ -75,6 +76,7 @@ var storeTokyo = {
     minCust: 3,
     maxCust: 24,
     avgSale: 1.2,
+    allCookies: [],
     getCustomers: function() {
         return computeCustomers(this.maxCust,this.minCust);
     },
@@ -88,7 +90,7 @@ var storeTokyo = {
         }
         cookies[cookies.length] = total;
         console.log(cookies);
-        return cookies;
+        this.allCookies = cookies;
     },
 }
 
@@ -97,6 +99,7 @@ var storeDubai = {
     minCust: 11,
     maxCust: 38,
     avgSale: 3.7,
+    allCookies: [],
     getCustomers: function() {
         return computeCustomers(this.maxCust,this.minCust);
     },
@@ -110,7 +113,7 @@ var storeDubai = {
         }
         cookies[cookies.length] = total;
         console.log(cookies);
-        return cookies;
+        this.allCookies = cookies;
     },
 }
 
@@ -119,6 +122,7 @@ var storeParis = {
     minCust: 20,
     maxCust: 38,
     avgSale: 2.3,
+    allCookies: [],
     getCustomers: function() {
         return computeCustomers(this.maxCust,this.minCust);
     },
@@ -132,7 +136,7 @@ var storeParis = {
         }
         cookies[cookies.length] = total;
         console.log(cookies);
-        return cookies;
+        this.allCookies = cookies;
     },
 }
 
@@ -141,6 +145,7 @@ var storeLima = {
     minCust: 2,
     maxCust: 16,
     avgSale: 4.6,
+    allCookies: [],
     getCustomers: function() {
         return computeCustomers(this.maxCust,this.minCust);
     },
@@ -154,7 +159,7 @@ var storeLima = {
         }
         cookies[cookies.length] = total;
         console.log(cookies);
-        return cookies;
+        this.allCookies = cookies;
     },
 }
 
@@ -162,7 +167,8 @@ var allStores = [storeSeattle,storeTokyo,storeDubai,storeParis,storeLima];
 
 var main = function(stores) {
     for(var i = 0; i < stores.length; i++) {
-        printCookieSales(stores[i].cookiesSold(),stores[i].location);
+        stores[i].cookiesSold();
+        printCookieSales(stores[i].allCookies,stores[i].location);
     }
 }
 
