@@ -19,6 +19,9 @@ var CreateStore = function(location,minCust,maxCust,avgSale,allCookies) {
         cookies[cookies.length] = total;
         this.allCookies = cookies;
     }
+    this.render = function(cookies,location) {
+        return printCookieSales(cookies,location);
+    }
 }
 
 // computes random customer amount
@@ -29,43 +32,65 @@ var computeCustomers = function(max,min) {
 
 // for printing cookies during a given time
 var printCookieSales = function (cookies,location) {
-    var time = ["6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","Total"];
-    makeDiv(location);
-    makeHeader(location);
-    makeList(location);
-    for(var i = 0; i < time.length; i++) {
-        var input = time[i] + " : " + cookies[i] + " cookies";
-        addListContent(input,location);
+    makeRow(location);
+    addItem(location,location);
+    for(var i = 0; i < cookies.length; i++) {
+        var input = cookies[i] + " cookies";
+        addItem(location,input);
     }
 }
 
-var makeHeader = function(className) {
-    var newHeader = document.createElement('h1');
-    var position = document.querySelector('div.' + className);
-    newHeader.textContent = className;
+// responsible for creating table header
+var makeHeader = function(times) {
+    makeRow("header");
+    newHeader = document.createElement('th');
+    position = document.getElementById('header')
     position.appendChild(newHeader);
+    for(var i = 0; i < times.length; i++) {
+        newHeader = document.createElement('th');
+        position = document.getElementById('header');
+        newHeader.textContent = times[i];
+        position.appendChild(newHeader);
+    }
 }
 
-var makeDiv = function(className) {
-    var newDiv = document.createElement('div');
+// responsible for creating the table footer totals 
+var makeFooter = function(stores) {
+    makeRow('footer');
+    addItem('footer','Totals');
+    for(var i = 0; i < 15; i++) {
+        var hourly = 0;
+        for(var j = 0; j < stores.length; j++) {
+            hourly = hourly + stores[j].allCookies[i];
+        }
+        addItem('footer', hourly);
+    }
+}
+
+// responsible for creating a new table element
+var makeTable = function() {
+    var newTable = document.createElement('table');
     var position = document.querySelector('body');
-    newDiv.setAttribute('class',className);
-    position.appendChild(newDiv);
+    newTable.setAttribute('id','sales');
+    position.appendChild(newTable);
 }
 
-var makeList = function(className){
-    var newList = document.createElement('ul');
-    var position = document.querySelector('div.' + className);
-    newList.setAttribute('class',className);
-    position.appendChild(newList);
+// responsible for creating a new row element
+var makeRow = function(location) {
+    var newRow = document.createElement('tr');
+    var position = document.getElementById('sales');
+    newRow.setAttribute('id',location);
+    position.appendChild(newRow);
 }
 
-var addListContent = function(text,className){
-    var newLI = document.createElement('li');
-    var position = document.querySelector('ul.' + className);
-    newLI.textContent = text;
-    position.appendChild(newLI);
+// responsible for adding a new cell to row 
+var addItem = function(location,text) {
+    var newItem = document.createElement('td');
+    var position = document.getElementById(location)
+    newItem.textContent = text;
+    position.appendChild(newItem);
 }
+
 
 // using constructor function to create stores
 var seattle = new CreateStore("Seattle",23,65,6.3,[]);
@@ -76,11 +101,16 @@ var lima = new CreateStore("Lima",2,16,4.6,[]);
 
 var allStores = [seattle,tokyo,dubai,paris,lima];
 
+// puts everything together
 var main = function(stores) {
+    var time = ["6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","Total"];
+    makeTable();
+    makeHeader(time);
     for(var i = 0; i < stores.length; i++) {
         stores[i].cookiesSold();
-        printCookieSales(stores[i].allCookies,stores[i].location);
+        stores[i].render(stores[i].allCookies,stores[i].location);
     }
+    makeFooter(stores);
 }
 
 main(allStores);
