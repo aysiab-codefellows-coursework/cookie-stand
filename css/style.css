@@ -11,10 +11,12 @@
     transform: translate(-50%, -50%);
     font-size: 16px;
     font-family: 'Lobster', cursive;
+    color: darkblue;
 }
 
 body {
     position: relative;
     text-align: center;
     background-color: lightsalmon;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
