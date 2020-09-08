@@ -1,15 +1,14 @@
-// object literals for each location 
-
-var storeSeattle = {
-    location: "Seattle",
-    minCust: 23,
-    maxCust: 65, 
-    avgSale: 6.3,
-    allCookies: [],
-    getCustomers: function() {
+// object constructor to create a new store location 
+var CreateStore = function(location,minCust,maxCust,avgSale,allCookies) {
+    this.location = location;
+    this.minCust = minCust;
+    this.maxCust = maxCust;
+    this.avgSale = avgSale;
+    this.allCookies = allCookies;
+    this.getCustomers = function() {
         return computeCustomers(this.maxCust,this.minCust);
-    },
-    cookiesSold: function() {
+    }
+    this.cookiesSold = function() {
         var cookies = [0]
         var total = 0;
         for(var i = 0; i < 14; i++) {
@@ -19,7 +18,7 @@ var storeSeattle = {
         }
         cookies[cookies.length] = total;
         this.allCookies = cookies;
-    },
+    }
 }
 
 // computes random customer amount
@@ -39,7 +38,6 @@ var printCookieSales = function (cookies,location) {
         addListContent(input,location);
     }
 }
-
 
 var makeHeader = function(className) {
     var newHeader = document.createElement('h1');
@@ -69,101 +67,14 @@ var addListContent = function(text,className){
     position.appendChild(newLI);
 }
 
+// using constructor function to create stores
+var seattle = new CreateStore("Seattle",23,65,6.3,[]);
+var tokyo = new CreateStore("Tokyo",3,24,1.2,[]);
+var dubai = new CreateStore("Dubai",11,38,3.7,[]);
+var paris = new CreateStore("Paris",20,38,2.3,[]);
+var lima = new CreateStore("Lima",2,16,4.6,[]);
 
-
-var storeTokyo = {
-    location: "Tokyo",
-    minCust: 3,
-    maxCust: 24,
-    avgSale: 1.2,
-    allCookies: [],
-    getCustomers: function() {
-        return computeCustomers(this.maxCust,this.minCust);
-    },
-    cookiesSold: function() {
-        var cookies = [0]
-        var total = 0;
-        for(var i = 0; i < 14; i++) {
-            var sold = Math.round(this.getCustomers() * this.avgSale);
-            total = total + sold;
-            cookies[i] = sold;
-        }
-        cookies[cookies.length] = total;
-        console.log(cookies);
-        this.allCookies = cookies;
-    },
-}
-
-var storeDubai = {
-    location: "Dubai",
-    minCust: 11,
-    maxCust: 38,
-    avgSale: 3.7,
-    allCookies: [],
-    getCustomers: function() {
-        return computeCustomers(this.maxCust,this.minCust);
-    },
-    cookiesSold: function() {
-        var cookies = [0]
-        var total = 0;
-        for(var i = 0; i < 14; i++) {
-            var sold = Math.round(this.getCustomers() * this.avgSale);
-            total = total + sold;
-            cookies[i] = sold;
-        }
-        cookies[cookies.length] = total;
-        console.log(cookies);
-        this.allCookies = cookies;
-    },
-}
-
-var storeParis = {
-    location: "Paris",
-    minCust: 20,
-    maxCust: 38,
-    avgSale: 2.3,
-    allCookies: [],
-    getCustomers: function() {
-        return computeCustomers(this.maxCust,this.minCust);
-    },
-    cookiesSold: function() {
-        var cookies = [0]
-        var total = 0;
-        for(var i = 0; i < 14; i++) {
-            var sold = Math.round(this.getCustomers() * this.avgSale);
-            total = total + sold;
-            cookies[i] = sold;
-        }
-        cookies[cookies.length] = total;
-        console.log(cookies);
-        this.allCookies = cookies;
-    },
-}
-
-var storeLima = {
-    location: "Lima",
-    minCust: 2,
-    maxCust: 16,
-    avgSale: 4.6,
-    allCookies: [],
-    getCustomers: function() {
-        return computeCustomers(this.maxCust,this.minCust);
-    },
-    cookiesSold: function() {
-        var cookies = [0]
-        var total = 0;
-        for(var i = 0; i < 14; i++) {
-            var sold = Math.round(this.getCustomers() * this.avgSale);
-            total = total + sold;
-            cookies[i] = sold;
-        }
-        cookies[cookies.length] = total;
-        console.log(cookies);
-        this.allCookies = cookies;
-    },
-}
-
-var allStores = [storeSeattle,storeTokyo,storeDubai,storeParis,storeLima];
+var allStores = [seattle,tokyo,dubai,paris,lima];
 
 var main = function(stores) {
     for(var i = 0; i < stores.length; i++) {
