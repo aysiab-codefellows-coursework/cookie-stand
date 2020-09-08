@@ -1,1 +1,18 @@
+#header {
+    position: relative;
+    text-align: center;
+    color: black;
+}
 
+#title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-family: 'Lobster', cursive;
+}
+
+body {
+    background-color: lightsalmon;
+}
