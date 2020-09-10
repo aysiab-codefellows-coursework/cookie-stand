@@ -15,8 +15,51 @@
 }
 
 body {
+    width: 100vw;
     position: relative;
     text-align: center;
     background-color: lightsalmon;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#about {
+    margin: auto;
+    width: 1000px;
+    text-align: justify;
+    padding: 50px;
+}
+
+#family {
+    float: left;
+    margin-right: 25px;
+}
+
+body > div:nth-child(5) {
+    margin: auto;
+    width: 1000px;
+    padding-bottom: 20px;
+}
+
+body > div:nth-child(5) > div:first-child {
+    float: right;
+}
+
+body > div:nth-child(5) > div:last-child {
+    width: 600px;
+    float: left;
+    text-align: justify;
+}
+
+body > div:nth-child(6) {
+    margin: auto;
+    width: 1000px;
+}
+
+body > div:nth-child(6) > div:first-child {
+    padding-top: 100px;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
 }
