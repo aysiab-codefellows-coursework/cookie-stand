@@ -1,10 +1,10 @@
 // object constructor to create a new store location 
-var CreateStore = function(location,minCust,maxCust,avgSale,allCookies) {
+var CreateStore = function(location,minCust,maxCust,avgSale) {
   this.location = location;
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgSale = avgSale;
-  this.allCookies = allCookies;
+  this.allCookies = [];
   this.getCustomers = function() {
     return computeCustomers(this.maxCust,this.minCust);
   }
@@ -70,7 +70,7 @@ var makeFooter = function(stores) {
 // responsible for creating a new table element
 var makeTable = function() {
   var newTable = document.createElement('table');
-  var position = document.querySelector('body');
+  var position = document.querySelector('main');
   newTable.setAttribute('id','sales');
   position.appendChild(newTable);
 }
@@ -92,13 +92,40 @@ var addItem = function(location,text) {
 }
 
 // using constructor function to create stores
-var seattle = new CreateStore("Seattle",23,65,6.3,[]);
-var tokyo = new CreateStore("Tokyo",3,24,1.2,[]);
-var dubai = new CreateStore("Dubai",11,38,3.7,[]);
-var paris = new CreateStore("Paris",20,38,2.3,[]);
-var lima = new CreateStore("Lima",2,16,4.6,[]);
+var seattle = new CreateStore("Seattle",23,65,6.3);
+var tokyo = new CreateStore("Tokyo",3,24,1.2);
+var dubai = new CreateStore("Dubai",11,38,3.7);
+var paris = new CreateStore("Paris",20,38,2.3);
+var lima = new CreateStore("Lima",2,16,4.6);
 
 var allStores = [seattle,tokyo,dubai,paris,lima];
+
+
+// responsible for storing form values
+var setFormValues = function() {
+  var location = document.getElementById('loc').value;
+  var minimum = document.getElementById('min').value;
+  var maximum = document.getElementById('max').value;
+  var average = document.getElementById('avg').value;
+  var store = new CreateStore(location,minimum,maximum,average);
+  appendForm(store);
+}
+
+// appends the form to the table, updates footer
+var appendForm = function(newStore) {
+  if(document.getElementById('footer')){
+    var footer = document.getElementById('footer');
+    footer.remove();
+  }
+  newStore.cookiesSold();
+  newStore.render(newStore.allCookies,newStore.location);
+  allStores.push(newStore);
+  makeFooter(allStores);
+}
+
+// calls for function for storing values on event click
+var submitEl = document.getElementById('submit');
+submitEl.onclick = setFormValues;
 
 // puts everything together
 var main = function(stores) {

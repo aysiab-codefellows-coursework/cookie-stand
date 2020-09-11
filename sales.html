@@ -6,11 +6,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
+    <header>
         <h1>Daily Cookie Sales</h1>
         <a href="index.html">Back to Home</a> 
+    </header>
+    <main>
         <br><br>
-    </div>
+    </main>
+    <footer>
+        <div>
+            <fieldset>
+                <legend>Add New Store Location:</legend>
+                <label>Location: <br>
+                    <input type ="text" id="loc"> <br>
+                </label>
+                <label>Minimun Hourly Customer: <br>
+                    <input type="text" id="min"> <br>
+                </label>
+                <label>Maximum Hourly Customer: <br>
+                    <input type="text" id="max"> <br>
+                </label>
+                <label>Average Cookie(s) Per Sale: <br>
+                    <input type="text" id="avg"> <br>
+                </label>
+                <input type ="submit" id="submit" value="Submit Data">
+            </fieldset>
+        </div>
+    </footer>
 </body>
 <script src="./js/app.js"></script>
 </html>
