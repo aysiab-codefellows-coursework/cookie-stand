@@ -7,14 +7,14 @@ td {
     border-color: salmon;
 }
 
-h1 {
+header {
     font-family: 'Lobster', cursive;
     color: darkblue;
+    text-align: center;
 }
 
 div {
     position: relative;
-    text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
