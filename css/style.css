@@ -9,16 +9,27 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 16px;
+    font-size: 24px;
     font-family: 'Lobster', cursive;
-    color: darkblue;
+    color: plum;
+}
+
+#stores {
+    color: plum;
+    font-family: 'Lobster',cursive;
+}
+
+#nav, h2 {
+    font-family: 'Lobster', cursive;
+    color: plum;
+
 }
 
 body {
     width: 100vw;
     position: relative;
     text-align: center;
-    background-color: lightsalmon;
+    background-color: whitesmoke;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 

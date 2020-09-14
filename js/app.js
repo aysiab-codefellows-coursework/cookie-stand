@@ -9,7 +9,7 @@ var CreateStore = function(location,minCust,maxCust,avgSale) {
     return computeCustomers(this.maxCust,this.minCust);
   }
   this.cookiesSold = function() {
-    var cookies = [0]
+    var cookies = [0];
     var total = 0;
     for(var i = 0; i < 14; i++) {
       var sold = Math.round(this.getCustomers() * this.avgSale);
